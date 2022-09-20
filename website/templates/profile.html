@@ -1,0 +1,55 @@
+{% extends "base.html" %} {% block title %}Profile{% endblock %}
+{% block content %}
+<br>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Profile from {{ user_profile.username }} </h1>
+        <hr>
+        <div class="card">
+          <div class="card-header">
+            Description
+          </div>
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <p>{{ user_profile.description }}</p>
+            </blockquote>
+          </div>
+        </div>
+        <br/>
+        <div class="card">
+            <div class="card-header">
+              PGP KEY
+            </div>
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p>{{ user_profile.pgp_key }}</p>
+              </blockquote>
+            </div>
+          </div>
+          <hr>
+          <h2>{{ user_profile.username }}'s Products:</h2>
+          <div class="row">
+            <div class="card-group">
+                {% for product in products %}
+                <div class="col-md-4">
+                    <div class="card" style="width: 22rem;">
+                      <img src="{{ url_for('static', filename='pictures/' + product.image_file) }}" class="card-img-top">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <p class="card-text">Price: {{ product.price }}</p>
+                        <a href="/profile/{{ product.vendor_id }}"><p>Vendor: {{ product.user.username }}</p></a>
+                        <a href="/product/{{ product.id }}" class="btn btn-primary">Details</a>
+                        <a href="/product/add/{{ product.id }}" class="btn btn-primary">Kaufen</a>
+                      </div>
+                    </div>
+                    <hr/>
+                  </div>
+                {% endfor %}
+                </div>
+                </div>
+            </div>
+          </div>
+</div>
+{% endblock content %}

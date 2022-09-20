@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block title %}Cart{% endblock %}
+{% block content %}
+<br>
+
+<div class="jumbotron">
+    <div class="container">
+        <div class="list-group">
+            <p class="white">Price for all Products: {{ subtotal }} Euro</p>
+            {% for product in products %}
+            <a href="/product/{{product.id}}" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ product.name }}</h5>
+                    <small>Added at {{ product.date }}</small>
+                </div>
+                <p class="mb-1">{{ product.price }} Euro</p>
+                <small>In stock: {{ product.quantity }}</small>
+            </a>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

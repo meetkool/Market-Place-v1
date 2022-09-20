@@ -1,0 +1,53 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<br />
+
+<div class="jumbotron">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('admin.admin_panel') }}">Admin Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('admin.products') }}">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('admin.users') }}">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Orders</a>
+          </li>
+        </ul>
+    </nav>
+  </div>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <ul class=" navbar-nav">
+          <li class="nav-item">
+            <a class="white nav-link" href="{{ url_for('admin.new_product') }}">Add Product</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('admin.new_product') }}">Edit Product</a>
+          </li>
+        </ul>
+    </nav>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    {% for product in products %}
+    <div class="col-sm">
+      <ul class="list-group list-group-horizontal-sm">
+        <li class="list-group-item">{{ product.id }}</li>
+        <li class="list-group-item">{{ product.name }}</li>
+        <li class="list-group-item">{{ product.description }}</li>
+        <li class="list-group-item">{{ product.price }}</li>
+        <li class="list-group-item">{{ product.quantity }}</li>
+        <li class="list-group-item">{{ product.image_file }}</li>
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}

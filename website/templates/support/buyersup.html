@@ -1,0 +1,51 @@
+{% extends "base.html" %} {% block title %}Buyer Support{% endblock %}
+{% block content %}
+<br>
+
+<div class="jumbotron">
+    <div class="container">
+        <div class="content-section">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Contact the Support, only for buyers</legend>
+                    <div class="form-group">
+                        {{ form.subject.label(class="form-control-label") }}
+                        {% if form.subject.errors %}
+                        {{ form.subject(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.subject.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %} {{ form.subject(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.text.label(class="form-control-label") }}
+                        {% if form.text.errors %}
+                        {{ form.text(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.text.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %} {{ form.text(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.picture.label() }}
+                        {{ form.picture(class="form-control-file") }}
+                        {% if form.picture.errors %}
+                            {% for error in form.picture.errors %}
+                            <span class="text-danger">{{ error }}</span></br>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </fieldset>
+                <div class="form-group">{{ form.submit(class="btn btn-primary") }}</div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css') }}">    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Market</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ url_for('views.home') }}">Home 
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ url_for('auth.account') }}">Account</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ url_for('views.cart') }}">Cart</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ url_for('auth.register') }}">Register</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
+    {% with messages = get_flashed_messages(with_categories=True) %} 
+        {% if messages %} 
+            {% for category, message in messages %} 
+                {% if category == "error" %}
+                    <div class="alert alert-danger" role="alert">{{ message }}</div>
+                {% else %}
+        <div class="alert alert-success" role="alert">{{ message }}</div>
+                {% endif %} 
+            {% endfor %} 
+        {% endif %} 
+    {% endwith %}
+    <div>{% block content %}{% endblock %}</div>
+
+</body>
+<footer>
+    <hr>
+    <nav class="nav nav-pills flex-column flex-sm-row">
+        <a class="flex-sm-fill text-sm-center nav-link" href="{{ url_for('support.contact') }}">Contact</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="{{ url_for('support.buyersup') }}">Support for Buyer</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="#">Become a Vendor</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="#">FAQ</a>
+    </nav>
+</footer>
+</html>

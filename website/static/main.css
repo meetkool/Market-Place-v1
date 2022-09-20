@@ -1,0 +1,17 @@
+.jumbotron {
+    background-color: gray;
+}
+
+body {
+    background-color: lightgray;
+}
+
+.white {
+    color: white;
+}
+p {
+    color: black;
+}
+li {
+    color: white;
+}

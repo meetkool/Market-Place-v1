@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block title %}Admin Panel{% endblock %} 
+{% block content %}
+
+<div class="jumbotron">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('admin.admin_panel') }}">Admin Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('admin.products') }}">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('admin.users') }}">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Orders</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <hr>
+    <h1>Admin Dashboard</h1>
+    <br/>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Users count: {{ data[0] }}</li>
+      <li class="list-group-item">Product count: {{ data[1] }}</li>
+      <li class="list-group-item">Order count: {{ data[2] }}</li>
+      <li class="list-group-item">Contact count: {{ data[3] }}</li>
+      <li class="list-group-item">Support count: {{ data[4] }}</li>
+    </ul>
+  </div>
+</div>
+{% endblock content %}
